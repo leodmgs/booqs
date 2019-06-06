@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Eulih" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="gIO-cv-20q" id="MKh-7m-7yS"/>
+                <outlet property="collectionView" destination="dOh-nF-UWt" id="3SA-Vg-uR7"/>
+                <outlet property="searchTextField" destination="Sho-bA-wrt" id="34E-AH-n3k"/>
+                <outlet property="searchViewContainer" destination="bYK-hW-zXd" id="VEk-fL-GJO"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dOh-nF-UWt">
+                    <rect key="frame" x="20" y="100" width="335" height="567"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KiX-WF-WJn">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYK-hW-zXd">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIO-cv-20q">
+                            <rect key="frame" x="295" y="40" width="60" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="OEp-ZD-mUi"/>
+                                <constraint firstAttribute="width" constant="60" id="hju-ar-Tb9"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.25061571599999999" green="0.25083461400000001" blue="0.25064963099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="KRM-Zc-qtO"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sho-bA-wrt" customClass="SearchTextField" customModule="Eulih" customModuleProvider="target">
+                            <rect key="frame" x="20" y="40" width="265" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="9m8-AF-043"/>
+                            </constraints>
+                            <color key="textColor" red="0.25061571598052979" green="0.25083461403846741" blue="0.25064963102340698" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="leftViewPadding">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onSearch:" destination="-1" eventType="touchDown" id="XF5-ug-xD7"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="gIO-cv-20q" firstAttribute="centerY" secondItem="Sho-bA-wrt" secondAttribute="centerY" id="5Gr-Hu-dpp"/>
+                        <constraint firstItem="Sho-bA-wrt" firstAttribute="leading" secondItem="bYK-hW-zXd" secondAttribute="leading" constant="20" id="5bD-QP-Vh4"/>
+                        <constraint firstAttribute="height" constant="100" id="ZTU-im-xQJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Sho-bA-wrt" secondAttribute="bottom" constant="20" id="d2G-nh-haB"/>
+                        <constraint firstItem="gIO-cv-20q" firstAttribute="leading" secondItem="Sho-bA-wrt" secondAttribute="trailing" priority="999" constant="10" id="gXl-qp-NIO"/>
+                        <constraint firstAttribute="trailing" secondItem="gIO-cv-20q" secondAttribute="trailing" constant="20" id="muT-xx-Pb8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bYK-hW-zXd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4Xh-Wt-m99"/>
+                <constraint firstItem="dOh-nF-UWt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-20" id="9hp-GX-u8P"/>
+                <constraint firstItem="dOh-nF-UWt" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="KJX-T9-Dlq"/>
+                <constraint firstItem="dOh-nF-UWt" firstAttribute="top" secondItem="bYK-hW-zXd" secondAttribute="bottom" id="SNz-hY-05F"/>
+                <constraint firstItem="dOh-nF-UWt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Tml-xO-914"/>
+                <constraint firstItem="bYK-hW-zXd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="bfb-jx-vqo"/>
+                <constraint firstItem="bYK-hW-zXd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cbq-jM-bBI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="80.799999999999997" y="48.125937031484263"/>
+        </view>
+    </objects>
+</document>

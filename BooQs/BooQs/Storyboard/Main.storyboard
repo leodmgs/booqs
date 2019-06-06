@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q2D-dV-E1P">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9iD-gu-1SX">
+            <objects>
+                <tabBarController id="q2D-dV-E1P" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wM4-dg-Ol6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="uke-Sj-fJp" kind="relationship" relationship="viewControllers" id="IvM-dq-adM"/>
+                        <segue destination="q0c-GU-Kri" kind="relationship" relationship="viewControllers" id="mhM-lS-cwL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BtU-Kz-Eim" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1681" y="-415"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="xc6-Ug-WCO">
+            <objects>
+                <viewController id="q0c-GU-Kri" customClass="ProfileViewController" customModule="Eulih" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="EEN-Di-kLc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vsk-a2-VBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-562" y="-744"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="IO7-UE-KYX">
+            <objects>
+                <viewController id="uke-Sj-fJp" customClass="SearchViewController" customModule="Eulih" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" id="1In-LC-lhP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zh6-V4-LYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-562" y="66"/>
+        </scene>
+    </scenes>
+</document>
