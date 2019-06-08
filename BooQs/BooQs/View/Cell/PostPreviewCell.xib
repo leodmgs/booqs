@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostPreviewCell.id" id="gTV-IL-0wX" customClass="PostPreviewCell" customModule="BooQs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="274"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="274"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1lR-v2-GbM">
+                        <rect key="frame" x="0.0" y="0.0" width="225" height="140"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="140" id="FxD-Zn-Zfw"/>
+                        </constraints>
+                    </imageView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bWb-ll-831">
+                        <rect key="frame" x="0.0" y="140" width="225" height="134"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="1lR-v2-GbM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="14G-2F-AKu"/>
+                <constraint firstAttribute="trailing" secondItem="1lR-v2-GbM" secondAttribute="trailing" id="IWY-wU-Xkc"/>
+                <constraint firstItem="bWb-ll-831" firstAttribute="top" secondItem="1lR-v2-GbM" secondAttribute="bottom" id="NQd-Lh-CHL"/>
+                <constraint firstAttribute="trailing" secondItem="bWb-ll-831" secondAttribute="trailing" id="PSM-VW-L8y"/>
+                <constraint firstItem="1lR-v2-GbM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VOD-m3-6hl"/>
+                <constraint firstAttribute="bottom" secondItem="bWb-ll-831" secondAttribute="bottom" id="YfD-tS-Ceg"/>
+                <constraint firstItem="bWb-ll-831" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kNG-Kr-g0J"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="225" height="274"/>
+            <connections>
+                <outlet property="postImageView" destination="1lR-v2-GbM" id="jeK-98-4F0"/>
+                <outlet property="postTextView" destination="bWb-ll-831" id="pdQ-Bg-L1V"/>
+            </connections>
+            <point key="canvasLocation" x="128.2608695652174" y="125.89285714285714"/>
+        </collectionViewCell>
+    </objects>
+</document>

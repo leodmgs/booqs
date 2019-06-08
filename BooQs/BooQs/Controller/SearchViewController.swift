@@ -13,10 +13,67 @@ class SearchViewController: UIViewController {
     var isSearching: Bool = false
     var searchInputTrailingConstraint: NSLayoutConstraint?
     
+    private var datasource: BQDatasource = {
+        let datasource = BQDatasource()
+        return datasource
+    }()
+    
+    private var query: String? {
+        didSet {
+            guard let _ = query else { return }
+            
+            let user1 = BQUser(
+                name: "José da Silva", phone: "9876-5432",
+                address: BQAddress(
+                    street: "Rua dois", number: 225,
+                    district: "Centro",
+                    city: "João Pessoa",
+                    state: "PB", zipCode: "58012-345"), posts: Array<BQPost>())
+            
+            let user2 = BQUser(
+                name: "Maria de Oliveira", phone: "9988-7766",
+                address: BQAddress(
+                    street: "Rua três", number: 1772,
+                    district: "Jardim",
+                    city: "João Pessoa",
+                    state: "PB", zipCode: "58011-222"), posts: Array<BQPost>())
+            
+            var imagesBook1 = Array<UIImage>()
+            imagesBook1.append(UIImage(named: "coding")!)
+            
+            var imagesBook2 = Array<UIImage>()
+            imagesBook2.append(UIImage(named: "algorithms")!)
+            
+            let book1 = BQBook(
+                title: "Cracking the Coding Interview",
+                isbn: "817-6-817263-8-7", images: imagesBook1)
+            
+            let book2 = BQBook(
+                title: "Algorihtms",
+                isbn: "123-4-567890-1-2", images: imagesBook2)
+            
+            let post1 = BQPost(
+                id: "1", user: user1, book: book1,
+                category: BQPost.Category.sell)
+            
+            let post2 = BQPost(
+                id: "2", user: user2, book: book2,
+                category: BQPost.Category.donate)
+            
+            datasource.add(element: post1)
+            datasource.add(element: post2)
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var searchTextField: SearchTextField!
     @IBOutlet var searchViewContainer: UIView!
     @IBOutlet var collectionView: UICollectionView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +98,8 @@ class SearchViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.register(
-            UINib(nibName: "SmallerPostPreviewCell", bundle: nil),
-            forCellWithReuseIdentifier: "SmallerPostPreviewCell.id")
+            UINib(nibName: "PostPreviewCell", bundle: nil),
+            forCellWithReuseIdentifier: "PostPreviewCell.id")
         collectionView.register(
             UINib(nibName: "PostPreviewHeaderCell", bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -63,17 +120,24 @@ class SearchViewController: UIViewController {
         searchTextField.endEditing(true)
     }
     
+    private func setupCell(_ cell: PostPreviewCell,
+                           _ indexPath: IndexPath) {
+        guard let post = datasource.index(at: indexPath.item) else {
+            return
+        }
+        if let bookPreview = post.imagePreview() {
+            cell.postImageView.image = bookPreview
+        }
+        let postDesc = "\(post.book.title)\n\(String(describing: post.category))"
+        cell.postTextView.text = postDesc
+    }
+    
     private func updateSearchBarAspect(isEditing: Bool) {
         searchInputTrailingConstraint?.constant = isEditing ? -70 : 0
         UIView.animate(
             withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-    }
-    
-    private func performSearch(for query: String) {
-        // TODO
-        print("searching...")
     }
     
 }
@@ -86,7 +150,7 @@ extension SearchViewController:
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return datasource.count
     }
     
     func collectionView(
@@ -94,7 +158,8 @@ extension SearchViewController:
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let postPreviewCell =
             collectionView.dequeueReusableCell(
-                withReuseIdentifier: "SmallerPostPreviewCell.id", for: indexPath)
+                withReuseIdentifier: "PostPreviewCell.id", for: indexPath) as! PostPreviewCell
+        setupCell(postPreviewCell, indexPath)
         return postPreviewCell
     }
     
@@ -148,11 +213,11 @@ extension SearchViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let searchText = textField.text, searchText.count > 0 {
+        if let searchToText = textField.text, searchToText.count > 0 {
             textField.resignFirstResponder()
             updateSearchBarAspect(isEditing: false)
             searchTextField.activateBasePlaceholder()
-            performSearch(for: searchText)
+            self.query = searchToText
         }
         return true
     }
