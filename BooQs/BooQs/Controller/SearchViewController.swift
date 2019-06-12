@@ -13,7 +13,17 @@ class SearchViewController: UIViewController {
     var isSearching: Bool = false
     var searchInputTrailingConstraint: NSLayoutConstraint?
     
-    private var datasource: BQDatasource = {
+    private var sellDatasource: BQDatasource = {
+        let datasource = BQDatasource()
+        return datasource
+    }()
+    
+    private var borrowDatasource: BQDatasource = {
+        let datasource = BQDatasource()
+        return datasource
+    }()
+    
+    private var donateDatasource: BQDatasource = {
         let datasource = BQDatasource()
         return datasource
     }()
@@ -21,51 +31,10 @@ class SearchViewController: UIViewController {
     private var query: String? {
         didSet {
             guard let _ = query else { return }
-            
-            let user1 = BQUser(
-                name: "José da Silva", phone: "9876-5432",
-                address: BQAddress(
-                    street: "Rua dois", number: 225,
-                    district: "Centro",
-                    city: "João Pessoa",
-                    state: "PB", zipCode: "58012-345"), posts: Array<BQPost>())
-            
-            let user2 = BQUser(
-                name: "Maria de Oliveira", phone: "9988-7766",
-                address: BQAddress(
-                    street: "Rua três", number: 1772,
-                    district: "Jardim",
-                    city: "João Pessoa",
-                    state: "PB", zipCode: "58011-222"), posts: Array<BQPost>())
-            
-            var imagesBook1 = Array<UIImage>()
-            imagesBook1.append(UIImage(named: "coding")!)
-            
-            var imagesBook2 = Array<UIImage>()
-            imagesBook2.append(UIImage(named: "algorithms")!)
-            
-            let book1 = BQBook(
-                title: "Cracking the Coding Interview",
-                isbn: "817-6-817263-8-7", images: imagesBook1)
-            
-            let book2 = BQBook(
-                title: "Algorihtms",
-                isbn: "123-4-567890-1-2", images: imagesBook2)
-            
-            let post1 = BQPost(
-                id: "1", user: user1, book: book1,
-                category: BQPost.Category.sell)
-            
-            let post2 = BQPost(
-                id: "2", user: user2, book: book2,
-                category: BQPost.Category.donate)
-            
-            datasource.add(element: post1)
-            datasource.add(element: post2)
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            print("This feature isn't available at this moment.")
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
         }
     }
     
@@ -78,6 +47,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupDatasource()
     }
     
     private func setupView() {
@@ -100,10 +70,21 @@ class SearchViewController: UIViewController {
         collectionView.register(
             UINib(nibName: "PostPreviewCell", bundle: nil),
             forCellWithReuseIdentifier: "PostPreviewCell.id")
+        
         collectionView.register(
-            UINib(nibName: "PostPreviewHeaderCell", bundle: nil),
+            UINib(nibName: "PostGroupHeaderView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "PostPreviewHeaderCell.id")
+            withReuseIdentifier: "PostGroupHeaderView.id")
+    }
+    
+    private func setupDatasource() {
+        let staticDatasource = StaticData()
+        DispatchQueue.main.async {
+            self.sellDatasource.add(collection: staticDatasource.postsToSell)
+            self.donateDatasource.add(collection: staticDatasource.postsToDonate)
+            self.borrowDatasource.add(collection: staticDatasource.postsToBorrow)
+            self.collectionView.reloadData()
+        }
     }
 
     @IBAction func onSearch(_ sender: Any) {
@@ -122,9 +103,19 @@ class SearchViewController: UIViewController {
     
     private func setupCell(_ cell: PostPreviewCell,
                            _ indexPath: IndexPath) {
-        guard let post = datasource.index(at: indexPath.item) else {
+        var postObject: BQPost?
+        switch indexPath.section {
+        case 0:
+            postObject = sellDatasource.index(at: indexPath.item)
+        case 1:
+            postObject = donateDatasource.index(at: indexPath.item)
+        case 2:
+            postObject = borrowDatasource.index(at: indexPath.item)
+        default:
+            print("Post doesn't recognized")
             return
         }
+        guard let post = postObject else { return }
         if let bookPreview = post.imagePreview() {
             cell.postImageView.image = bookPreview
         }
@@ -147,15 +138,30 @@ extension SearchViewController:
     UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // (1) to sell; (2) to donate; and (3) to borrow.
+        return 3
+    }
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        return datasource.count
+        switch section {
+        case 0:
+            return sellDatasource.count
+        case 1:
+            return donateDatasource.count
+        case 2:
+            return borrowDatasource.count
+        default:
+            return 0
+        }
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print(indexPath)
         let postPreviewCell =
             collectionView.dequeueReusableCell(
                 withReuseIdentifier: "PostPreviewCell.id", for: indexPath) as! PostPreviewCell
@@ -176,23 +182,29 @@ extension SearchViewController:
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width - 26
-        return CGSize(width: screenWidth, height: 100)
+        return CGSize(width: screenWidth, height: 120)
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath) -> UICollectionReusableView {
-        var reusableViewCell: UICollectionReusableView?
         if kind == UICollectionView.elementKindSectionHeader {
-            reusableViewCell = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind, withReuseIdentifier: "PostPreviewHeaderCell.id",
-                for: indexPath)
+            let reusableViewCell = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind, withReuseIdentifier: "PostGroupHeaderView.id",
+                for: indexPath) as! PostGroupHeaderView
+            switch indexPath.section {
+            case 0: // to sell
+                reusableViewCell.headerTitleLabel.text = "You have a change to buy that book"
+            case 1: // to donate
+                reusableViewCell.headerTitleLabel.text = "It's time to be the next reading an amazing book"
+            case 2: // to borrow
+                reusableViewCell.headerTitleLabel.text = "Someone wants to share amazing books"
+            default:
+                reusableViewCell.headerTitleLabel.text = "A reader lives a thousand lives before he dies."
+            }
+            return reusableViewCell
         }
-        if let cell = reusableViewCell {
-            return cell
-        }
-        // FIXME
         return UICollectionReusableView()
     }
     
