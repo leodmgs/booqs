@@ -108,8 +108,8 @@ class StaticData {
     
     
     
-    let postsToBorrow: Array<BQPost> = {
-        var borrowList = Array<BQPost>()
+    let postsToLend: Array<BQPost> = {
+        var lendList = Array<BQPost>()
         
         // Users
         
@@ -181,26 +181,26 @@ class StaticData {
         
         let post5 = BQPost(
             id: "5", user: user1, book: book1,
-            category: BQPost.Category.borrow)
+            category: BQPost.Category.lend)
         
         let post6 = BQPost(
             id: "6", user: user2, book: book2,
-            category: BQPost.Category.borrow)
+            category: BQPost.Category.lend)
         
         let post7 = BQPost(
             id: "7", user: user3, book: book3,
-            category: BQPost.Category.borrow)
+            category: BQPost.Category.lend)
         
         let post8 = BQPost(
             id: "8", user: user4, book: book4,
-            category: BQPost.Category.borrow)
+            category: BQPost.Category.lend)
         
-        borrowList.append(post5)
-        borrowList.append(post6)
-        borrowList.append(post7)
-        borrowList.append(post8)
+        lendList.append(post5)
+        lendList.append(post6)
+        lendList.append(post7)
+        lendList.append(post8)
         
-        return borrowList
+        return lendList
     }()
     
     

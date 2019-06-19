@@ -18,7 +18,7 @@ class SearchViewController: UIViewController {
         return datasource
     }()
     
-    private var borrowDatasource: BQDatasource = {
+    private var lendDatasource: BQDatasource = {
         let datasource = BQDatasource()
         return datasource
     }()
@@ -82,7 +82,7 @@ class SearchViewController: UIViewController {
         DispatchQueue.main.async {
             self.sellDatasource.add(collection: staticDatasource.postsToSell)
             self.donateDatasource.add(collection: staticDatasource.postsToDonate)
-            self.borrowDatasource.add(collection: staticDatasource.postsToBorrow)
+            self.lendDatasource.add(collection: staticDatasource.postsToLend)
             self.collectionView.reloadData()
         }
     }
@@ -110,7 +110,7 @@ class SearchViewController: UIViewController {
         case 1:
             postObject = donateDatasource.index(at: indexPath.item)
         case 2:
-            postObject = borrowDatasource.index(at: indexPath.item)
+            postObject = lendDatasource.index(at: indexPath.item)
         default:
             print("Post doesn't recognized")
             return
@@ -139,7 +139,7 @@ extension SearchViewController:
     UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // (1) to sell; (2) to donate; and (3) to borrow.
+        // (1) to sell; (2) to donate; and (3) to lend.
         return 3
     }
     
@@ -152,7 +152,7 @@ extension SearchViewController:
         case 1:
             return donateDatasource.count
         case 2:
-            return borrowDatasource.count
+            return lendDatasource.count
         default:
             return 0
         }
@@ -198,7 +198,7 @@ extension SearchViewController:
                 reusableViewCell.headerTitleLabel.text = "You have a change to buy that book"
             case 1: // to donate
                 reusableViewCell.headerTitleLabel.text = "It's time to be the next reading an amazing book"
-            case 2: // to borrow
+            case 2: // to lend
                 reusableViewCell.headerTitleLabel.text = "Someone wants to share amazing books"
             default:
                 reusableViewCell.headerTitleLabel.text = "A reader lives a thousand lives before he dies."

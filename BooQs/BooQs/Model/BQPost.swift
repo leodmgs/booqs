@@ -18,7 +18,7 @@ class BQPost {
     
     enum Category {
         case sell
-        case borrow
+        case lend
         case donate
     }
     
