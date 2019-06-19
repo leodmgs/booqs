@@ -28,6 +28,8 @@
 		7A19CA5F22B07B4E00A17D78 /* StaticData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19CA5E22B07B4E00A17D78 /* StaticData.swift */; };
 		7A19CA6422B091E300A17D78 /* PostGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19CA6222B091E300A17D78 /* PostGroupHeaderView.swift */; };
 		7A19CA6522B091E300A17D78 /* PostGroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A19CA6322B091E300A17D78 /* PostGroupHeaderView.xib */; };
+		7A19CA6A22B9BA3000A17D78 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19CA6822B9BA3000A17D78 /* PostViewController.swift */; };
+		7A19CA6B22B9BA3000A17D78 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A19CA6922B9BA3000A17D78 /* PostViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		7A19CA5E22B07B4E00A17D78 /* StaticData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticData.swift; sourceTree = "<group>"; };
 		7A19CA6222B091E300A17D78 /* PostGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGroupHeaderView.swift; sourceTree = "<group>"; };
 		7A19CA6322B091E300A17D78 /* PostGroupHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostGroupHeaderView.xib; sourceTree = "<group>"; };
+		7A19CA6822B9BA3000A17D78 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		7A19CA6922B9BA3000A17D78 /* PostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostViewController.xib; path = ../Controller/PostViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,7 @@
 			children = (
 				7A19CA3C22A8B71F00A17D78 /* Main */,
 				7A19CA3A22A8B71F00A17D78 /* SearchViewController.swift */,
+				7A19CA6822B9BA3000A17D78 /* PostViewController.swift */,
 				7A19CA3B22A8B71F00A17D78 /* ProfileViewController.swift */,
 			);
 			path = Controller;
@@ -214,6 +219,7 @@
 			children = (
 				7A19CA4022A8B71F00A17D78 /* Cell */,
 				7A19CA3F22A8B71F00A17D78 /* ProfileViewController.xib */,
+				7A19CA6922B9BA3000A17D78 /* PostViewController.xib */,
 				7A19CA4322A8B71F00A17D78 /* SearchViewController.xib */,
 				7A19CA4422A8B71F00A17D78 /* UI+Custom */,
 			);
@@ -347,6 +353,7 @@
 				7A19CA1022A8B4A100A17D78 /* LaunchScreen.storyboard in Resources */,
 				7A19CA5D22AB5C6600A17D78 /* PostPreviewCell.xib in Resources */,
 				7A19CA4922A8B71F00A17D78 /* ProfileViewController.xib in Resources */,
+				7A19CA6B22B9BA3000A17D78 /* PostViewController.xib in Resources */,
 				7A19CA0D22A8B4A100A17D78 /* Assets.xcassets in Resources */,
 				7A19CA4C22A8B71F00A17D78 /* SearchViewController.xib in Resources */,
 				7A19CA6522B091E300A17D78 /* PostGroupHeaderView.xib in Resources */,
@@ -377,6 +384,7 @@
 				7A19CA5322AB3D8700A17D78 /* BQUser.swift in Sources */,
 				7A19CA0322A8B4A000A17D78 /* AppDelegate.swift in Sources */,
 				7A19CA4722A8B71F00A17D78 /* ProfileViewController.swift in Sources */,
+				7A19CA6A22B9BA3000A17D78 /* PostViewController.swift in Sources */,
 				7A19CA5522AB3F4B00A17D78 /* BQDatasource.swift in Sources */,
 				7A19CA5122AB3BA900A17D78 /* BQPost.swift in Sources */,
 				7A19CA5C22AB5C6600A17D78 /* PostPreviewCell.swift in Sources */,
